@@ -1,6 +1,8 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
-
+    globals:
+        fiori: 'Patrick FIORI<br>1969-????<br>Marseille'
+        date: '@App\Custom\Date'
 when@test:
     twig:
         strict_variables: true

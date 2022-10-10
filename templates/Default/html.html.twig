@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <body>
-        {{ html }}
+        {{ date.today }}
+        {{ html|raw }}
+        <a href="{{ path('app_random_million') }}">Million</a>
     </body>
 </html>
