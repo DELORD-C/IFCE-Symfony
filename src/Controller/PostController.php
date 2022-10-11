@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,7 @@ class PostController extends AbstractController
             $post = $form->getData();
             $em->persist($post);
             $em->flush();
-            return $this->redirectToRoute('app_default_hello');
+            return $this->redirectToRoute('app_post_list');
         }
 
         return $this->renderForm('Post/form.html.twig', [
@@ -45,7 +46,7 @@ class PostController extends AbstractController
             $post = $form->getData();
             $em->persist($post);
             $em->flush();
-            return $this->redirectToRoute('app_default_hello');
+            return $this->redirectToRoute('app_post_list');
         }
 
         return $this->renderForm('Post/form.html.twig', [
@@ -59,7 +60,16 @@ class PostController extends AbstractController
     {
         $em->remove($post);
         $em->flush();
-        return $this->redirectToRoute('app_default_hello');
+        return $this->redirectToRoute('app_post_list');
+    }
+
+    #[Route('/all')]
+    function list (PostRepository $postRepository) : Response
+    {
+        $posts = $postRepository->findAll();
+        return $this->render('Post/list.html.twig', [
+            'posts' => $posts
+        ]);
     }
 
     #[Route('/{post}')]
