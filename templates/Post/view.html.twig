@@ -4,4 +4,9 @@
     <p>{{ post.subject }}</p>
     <p>{{ post.content }}</p>
     <p>{{ post.createdAt|date('d/m/Y H:i') }}</p>
+    <h2>Comments</h2>
+    {% for comment in post.comments %}
+        <p>{{ comment.content }}</p>
+    {% endfor %}
+    {{ form(form) }}
 {% endblock %}
