@@ -1,0 +1,8 @@
+{% extends 'default.html.twig' %}
+{% block content %}
+    {{ form_start(form) }}
+        {{ form_row(form.subject)}}
+        {{ form_row(form.content)}}
+        {{ form_row(form.save, {'label': button})}}
+    {{ form_end(form) }}
+{% endblock %}

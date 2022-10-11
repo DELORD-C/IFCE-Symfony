@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
+use App\Form\PostType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -10,8 +14,59 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
     #[Route('/create')]
-    function create () : Response
+    public function create (Request $request, EntityManagerInterface $em) : Response
     {
-        return $this->render('Post/create.html.twig');
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+            $em->persist($post);
+            $em->flush();
+            return $this->redirectToRoute('app_default_hello');
+        }
+
+        return $this->renderForm('Post/form.html.twig', [
+            'form' => $form,
+            'button' => 'Create'
+        ]);
+    }
+
+    #[Route('/update/{post}')]
+    public function update (Post $post, Request $request, EntityManagerInterface $em) : Response
+    {
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+            $em->persist($post);
+            $em->flush();
+            return $this->redirectToRoute('app_default_hello');
+        }
+
+        return $this->renderForm('Post/form.html.twig', [
+            'form' => $form,
+            'button' => 'Update'
+        ]);
+    }
+
+    #[Route('/delete/{post}')]
+    public function delete (Post $post, EntityManagerInterface $em) : Response
+    {
+        $em->remove($post);
+        $em->flush();
+        return $this->redirectToRoute('app_default_hello');
+    }
+
+    #[Route('/{post}')]
+    public function view (Post $post) : Response
+    {
+        return $this->render('Post/view.html.twig', [
+            'post' => $post
+        ]);
     }
 }
