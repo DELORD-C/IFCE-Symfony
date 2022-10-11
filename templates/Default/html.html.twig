@@ -1,8 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-    <body>
-        {{ date.today }}
-        {{ html|raw }}
-        <a href="{{ path('app_random_million') }}">Million</a>
-    </body>
-</html>
+{% extends 'default.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+    HTML
+{% endblock %}
+
+{% block content %}
+    {{ render(controller('App\\Controller\\DefaultController::hello')) }}
+    {{ date.today }}
+    {{ html|raw }}
+    <a href="{{ path('app_random_million') }}">Million</a>
+{% endblock %}
