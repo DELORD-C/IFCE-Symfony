@@ -1,13 +1,13 @@
 {% extends 'default.html.twig' %}
 
 {% block content %}
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Subject</th>
-                <th>Resume</th>
-                <th>Creation date</th>
-                <th>Actions</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Resume</th>
+                <th scope="col">Creation date</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,9 +17,9 @@
                 <td>{{ post.content }}</td>
                 <td>{{ post.createdAt|date('d-m-Y') }}</td>
                 <td>
-                    <a href="{{ path('app_post_view', {'post': post.id}) }}">View</a>
-                    <a href="{{ path('app_post_update', {'post': post.id}) }}">Update</a>
-                    <a href="{{ path('app_post_delete', {'post': post.id}) }}">Delete</a>
+                    <a class="btn btn-primary" href="{{ path('app_post_view', {'post': post.id}) }}">View</a>
+                    <a class="btn btn-primary" href="{{ path('app_post_update', {'post': post.id}) }}">Update</a>
+                    <a class="btn btn-danger" href="{{ path('app_post_delete', {'post': post.id}) }}">Delete</a>
                 </td>
             </tr>
         {% endfor %}

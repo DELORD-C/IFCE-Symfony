@@ -3,8 +3,8 @@
 1. Ajoutez une image dans l'une de vos pages 
 via webpack et la fonction twig `asset()`
 
-2. Modifiez vos controllers pour que
-l'intégralité de vos pages utilisent le template
+2. Modifiez vos controllers et vos modèles pour que
+l'intégralité de vos pages utilisent un template qui étend
 `default.html.twig` (par héritage)
 
 3. Rendez-vous sur `https://getbootstrap.com` et

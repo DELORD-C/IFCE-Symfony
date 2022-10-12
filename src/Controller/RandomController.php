@@ -3,11 +3,12 @@
 namespace App\Controller;
 
 use Exception;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/random')]
-class RandomController
+class RandomController extends AbstractController
 {
     /**
      * @throws Exception
@@ -16,7 +17,9 @@ class RandomController
     function number (Int $max = 100) : Response
     {
         $number = random_int(0,$max);
-        return new Response($number);
+        return $this->render('info.html.twig', [
+            'data' => $number
+        ]);
     }
 
     /**
@@ -26,6 +29,8 @@ class RandomController
     function million () : Response
     {
         $number = random_int(0,1000000);
-        return new Response($number);
+        return $this->render('info.html.twig', [
+            'data' => $number
+        ]);
     }
 }

@@ -1,12 +1,40 @@
-<nav>
-    <ul>
-        <li>
-            <a href="{{ path('app_random_number', {'max': '100'}) }}">
-                Random Number
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('app_default_html') }}">HTML</a>
-        </li>
-    </ul>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_post_list') }}">Symfony</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Default
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_default_hello') }}">Hello</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_default_apple', {'number': 100}) }}">Apple</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_default_html') }}">HTML</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Random
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_random_number', {'max': 1000}) }}">Number</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_random_million') }}">Million</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Posts
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_post_list') }}">List</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_post_create') }}">Create</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
