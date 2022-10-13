@@ -18,8 +18,10 @@
                 <td>{{ post.createdAt|date('d-m-Y') }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ path('app_post_view', {'post': post.id}) }}">View</a>
-                    <a class="btn btn-primary" href="{{ path('app_post_update', {'post': post.id}) }}">Update</a>
-                    <a class="btn btn-danger" href="{{ path('app_post_delete', {'post': post.id}) }}">Delete</a>
+                    {% if app.user == post.user or is_granted('ROLE_ADMIN') %}
+                        <a class="btn btn-primary" href="{{ path('app_post_update', {'post': post.id}) }}">Update</a>
+                        <a class="btn btn-danger" href="{{ path('app_post_delete', {'post': post.id}) }}">Delete</a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

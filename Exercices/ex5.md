@@ -6,3 +6,5 @@ et la création d'un commentaire est accessible à tout utilisateur
 connecté
 - Un post peut être édité et supprimé par son propriétaire
 et les ROLE_ADMIN
+- Les boutons d'édition et de suppression doivent apparaitre
+seulement lorsque nécessaire

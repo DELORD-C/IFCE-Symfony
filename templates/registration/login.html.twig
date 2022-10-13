@@ -1,6 +1,7 @@
 {% extends 'default.html.twig' %}
 {% block content %}
     <form method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <label for="email">Email</label>
         <input type="email" name="_username" id="email">
         <label for="password">Password</label>

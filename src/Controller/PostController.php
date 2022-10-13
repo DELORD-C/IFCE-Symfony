@@ -19,6 +19,7 @@ class PostController extends AbstractController
     #[Route('/create')]
     public function create (Request $request, EntityManagerInterface $em) : Response
     {
+        $this->denyAccessUnlessGranted('create', new Post());
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
 
@@ -41,6 +42,7 @@ class PostController extends AbstractController
     #[Route('/update/{post}')]
     public function update (Post $post, Request $request, EntityManagerInterface $em) : Response
     {
+        $this->denyAccessUnlessGranted('edit', $post);
         $form = $this->createForm(PostType::class, $post);
 
         $form->handleRequest($request);
@@ -61,6 +63,7 @@ class PostController extends AbstractController
     #[Route('/delete/{post}')]
     public function delete (Post $post, EntityManagerInterface $em) : Response
     {
+        $this->denyAccessUnlessGranted('delete', $post);
         $em->remove($post);
         $em->flush();
         return $this->redirectToRoute('app_post_list');
@@ -69,6 +72,7 @@ class PostController extends AbstractController
     #[Route('/all')]
     function list (PostRepository $postRepository) : Response
     {
+        $this->denyAccessUnlessGranted('view', new Post());
         $posts = $postRepository->findAll();
         return $this->render('Post/list.html.twig', [
             'posts' => $posts
@@ -78,6 +82,7 @@ class PostController extends AbstractController
     #[Route('/{post}')]
     public function view (Post $post, Request $request, EntityManagerInterface $em) : Response
     {
+        $this->denyAccessUnlessGranted('view', $post);
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
 
