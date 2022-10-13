@@ -1,9 +1,9 @@
 # Exercice 4
 
-1. Créer les pages suivants (utilisez make pour créer un CRUD
+1. Créer les pages suivants (utilisez make:crud pour créer un CRUD
 puis adaptez le résultat)
    - /user/list
-   - /user/edit
+   - /user/edit (juste pour changement de mail)
    - /user/delete
 
 2. Mettre en place un contrôle d'accès qui laisse uniquement les
