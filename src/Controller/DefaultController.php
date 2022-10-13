@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/hello')]
+    #[Route('/')]
     function hello () : Response
     {
         return $this->render('Default/hello.html.twig');
@@ -17,6 +17,7 @@ class DefaultController extends AbstractController
     #[Route('/apple/{number}')]
     function apple (Int $number = 0) : Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('Default/apple.html.twig', [
             'number' => $number
         ]);
@@ -25,6 +26,7 @@ class DefaultController extends AbstractController
     #[Route('/html')]
     function html () : Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('Default/html.html.twig', [
            'html' => "<h1>Ceci est un titre</h1>"
         ]);

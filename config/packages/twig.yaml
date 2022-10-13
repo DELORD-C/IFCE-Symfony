@@ -3,6 +3,7 @@ twig:
     globals:
         fiori: 'Patrick FIORI<br>1969-????<br>Marseille'
         date: '@App\Custom\Date'
+    form_themes: ['bootstrap_5_layout.html.twig']
 when@test:
     twig:
         strict_variables: true

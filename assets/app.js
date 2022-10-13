@@ -10,7 +10,6 @@ import './styles/app.css';
 import 'bootstrap/scss/bootstrap.scss';
 import 'bootstrap-icons/font/bootstrap-icons.scss';
 
-const $ = require('jquery');
 require('bootstrap');
 
 // start the Stimulus application
