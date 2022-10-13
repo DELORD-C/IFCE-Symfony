@@ -16,6 +16,7 @@ class UserController extends AbstractController
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
+        $this->denyAccessUnlessGranted('view', new User());
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
@@ -24,13 +25,14 @@ class UserController extends AbstractController
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
+        $this->denyAccessUnlessGranted('edit', $user);
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
 
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_default_hello', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('user/edit.html.twig', [
@@ -42,6 +44,7 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
+        $this->denyAccessUnlessGranted('delete', $user);
 //        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
 //        }

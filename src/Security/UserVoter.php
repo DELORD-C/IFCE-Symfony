@@ -38,9 +38,18 @@ class UserVoter extends Voter
         }
 
         return match($attribute) {
-            self::VIEW => $this->canView($subject, $user),
-            self::EDIT => $this->canEdit($subject, $user),
-            self::DELETE => $this->canDelete($subject, $user)
+            self::VIEW, self::DELETE => $this->canDelete($user),
+            self::EDIT => $this->canEdit($subject, $user)
         };
+    }
+
+    function canEdit (User $user, User $loggedIn): bool
+    {
+        return $user === $loggedIn || $this->canDelete($loggedIn);
+    }
+
+    function canDelete (User $loggedIn): bool
+    {
+        return in_array('ROLE_ADMIN', $loggedIn->getRoles());
     }
 }

@@ -26,6 +26,7 @@ class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post = $form->getData();
+            $post->setUser($this->getUser());
             $em->persist($post);
             $em->flush();
             return $this->redirectToRoute('app_post_list');
@@ -85,6 +86,7 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
             $comment->setPost($post);
+            $comment->setUser($this->getUser());
             $em->persist($comment);
             $em->flush();
             return $this->redirectToRoute('app_post_view', ['post' => $post->getId()]);
