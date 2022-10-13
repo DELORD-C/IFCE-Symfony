@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
@@ -44,9 +45,12 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/login')]
-    public function login (): Response
+    public function login (AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('registration/login.html.twig');
+        $error = $authenticationUtils->getLastAuthenticationError();
+        return $this->render('registration/login.html.twig', [
+            'error' => $error
+        ]);
     }
 
     #[Route('/logout')]
