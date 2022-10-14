@@ -6,3 +6,4 @@
 de tous les posts accessibles uniquement aux ROLE_ADMIN
 4. Ajouter un lien vers cette page dans le menu pour les
 ROLE_ADMIN uniquement
+5. Ajouter la navbar à chaque page via le Edge Side Includes.

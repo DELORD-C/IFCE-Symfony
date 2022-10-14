@@ -7,7 +7,7 @@
         {{ encore_entry_link_tags('app') }}
     </head>
     <body>
-        {% include 'Parts/_navbar.html.twig' %}
+        {{ render_esi(controller('App\\Controller\\EsiController::navbar')) }}
         {% block content %}{% endblock %}
         {{ encore_entry_script_tags('app') }}
     </body>
