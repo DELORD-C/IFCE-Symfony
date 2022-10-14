@@ -11,7 +11,12 @@ class DefaultController extends AbstractController
     #[Route('/')]
     function hello () : Response
     {
-        return $this->render('Default/hello.html.twig');
+        $response = $this->render('Default/hello.html.twig');
+        $response->setPublic();
+        $response->setMaxAge(86400);
+        $response->headers->addCacheControlDirective('must-revalidate', true);
+
+        return $response;
     }
 
     #[Route('/apple/{number}')]

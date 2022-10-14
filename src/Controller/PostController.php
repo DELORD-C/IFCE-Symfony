@@ -70,13 +70,19 @@ class PostController extends AbstractController
     }
 
     #[Route('/all')]
-    function list (PostRepository $postRepository) : Response
+    function list (PostRepository $postRepository, Request $request) : Response
     {
         $this->denyAccessUnlessGranted('view', new Post());
         $posts = $postRepository->findAll();
-        return $this->render('Post/list.html.twig', [
+        $response = $this->render('Post/list.html.twig', [
             'posts' => $posts
         ]);
+
+        $response->setPublic();
+        $response->setEtag(md5($response->getContent()));
+        $response->isNotModified($request);
+
+        return $response;
     }
 
     #[Route('/{post}')]

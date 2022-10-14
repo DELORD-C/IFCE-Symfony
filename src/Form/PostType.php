@@ -19,7 +19,7 @@ class PostType extends AbstractType
     public function buildForm (FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add($this->translator->trans('subject'), TextType::class)
+            ->add('subject', TextType::class)
             ->add('content', TextareaType::class)
             ->add('save', SubmitType::class);
     }
