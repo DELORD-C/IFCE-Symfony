@@ -1,0 +1,4 @@
+login:
+  email: Email
+  password: Password
+subject: Subject

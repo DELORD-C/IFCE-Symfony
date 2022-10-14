@@ -24,6 +24,7 @@
         "bootstrap": "^5.2.2",
         "bootstrap-icons": "^1.9.1",
         "file-loader": "^6.2.0",
+        "flag-icons": "^6.6.6",
         "jquery": "^3.6.1",
         "sass": "^1.55.0",
         "sass-loader": "^13.1.0"

@@ -43,6 +43,11 @@
                     <li class="nav-item"><a class="nav-link" href="{{ path('app_registration_login') }}">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ path('app_register') }}">Register</a></li>
                 {% endif %}
+                {% if app.request.session.get('_locale') == 'en' %}
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_locale_set', {'locale': 'fr'}) }}?route={{ app.request.attributes.get('_route') }}"><span class="fi fi-fr"></span></a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_locale_set', {'locale': 'en'}) }}?route={{ app.request.attributes.get('_route') }}"><span class="fi fi-gb"></span></a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

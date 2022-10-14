@@ -9,6 +9,7 @@
 import './styles/app.css';
 import 'bootstrap/scss/bootstrap.scss';
 import 'bootstrap-icons/font/bootstrap-icons.scss';
+import 'flag-icons/sass/flag-icons.scss';
 
 require('bootstrap');
 

@@ -5,9 +5,9 @@
     {% endif %}
     <form method="post">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        <label for="email">Email</label>
+        <label for="email">{{ 'login.email'|trans }}</label>
         <input type="email" name="_username" id="email">
-        <label for="password">Password</label>
+        <label for="password">{{ 'login.password'|trans }}</label>
         <input type="password" name="_password" id="password">
         <input type="submit" value="Login">
     </form>
